@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lang Web Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: "Inter", sans-serif; background-color: #f8fafc; color: #0f172a; }
+        h1, h2, h3, .serif { font-family: "Playfair Display", serif; }
+        .mono { font-family: "JetBrains Mono", monospace; }
+        .dashboard-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        details > summary { cursor: pointer; list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+        @keyframes sweep { 0% {opacity: 0; margin-top: -10px} 100% {opacity: 1; margin-top: 0px} }
+        @media print {
+            body { background: white; }
+            .dashboard-container { padding: 0; max-width: 100%; }
+            details[open] summary ~ * { animation: none; }
+            details { display: block; }
+            details > summary::after { content: ""; display: none; }
+            details > div { display: block !important; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="dashboard-container space-y-12">
+        <!-- HEADER -->
+        <header class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-900"></div>
+            <h1 class="text-4xl font-bold text-slate-900 tracking-tight uppercase">Executive Fluency Diagnostic</h1>
+            <div class="mt-4 flex justify-center space-x-6 text-sm text-slate-500 font-medium uppercase tracking-wider">
+                <span>Client: <span class="text-slate-900 font-bold">Traysee</span></span>
+                <span>Session: <span class="text-slate-900 font-bold">Day 1 Baseline (15-Minute Sprint)</span></span>
+                <span>Date: <span class="text-slate-900 font-bold">2026-09-01</span></span>
+            </div>
+        </header>
+
+        <!-- TOP LEVEL OVERALL IMPRESSION (NEW) -->
+        <section class="bg-slate-900 text-white rounded-2xl p-8 shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 uppercase tracking-widest text-indigo-400">The Executive Summary</h2>
+            <p class="text-slate-200 text-base mb-6 leading-relaxed">Overall, your English is highly functional and professionally viable, indicating a strong foundation in standard workplace communication. However, when operating under cognitive load—such as explaining complex healthcare recruitment metrics or justifying strategic decisions—your fluency destabilizes. You rely on conversational buffering techniques and direct L1 translation loops that subconsciously dilute your executive presence. You possess the raw vocabulary required for leadership, but your pacing and syntactic structure currently place you in a reactive posture rather than an authoritative one. The goal of this sprint is to transition your speech from 'functional survival' to 'executive command.'</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-emerald-900/30 border border-emerald-800/50 p-5 rounded-xl">
+                    <h3 class="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-2 flex items-center"><span class="mr-2">🏆</span> A Solid Win</h3>
+                    <p class="text-sm text-emerald-100/80 leading-relaxed">You maintained a calm, polite demeanor and did not panic or stutter during complex technical explanations.</p>
+                </div>
+                <div class="bg-rose-900/30 border border-rose-800/50 p-5 rounded-xl">
+                    <h3 class="text-rose-400 font-bold uppercase tracking-widest text-xs mb-2 flex items-center"><span class="mr-2">⚠️</span> The Major Bottleneck</h3>
+                    <p class="text-sm text-rose-100/80 leading-relaxed">Chronological Storytelling and Menu-Reading. You list skills passively rather than asserting your value aggressively.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GLOBAL GRADING MATRIX (UPDATED WITH JUSTIFICATIONS) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+            <h3 class="text-lg font-bold text-slate-800 mb-6 uppercase tracking-widest border-b border-slate-100 pb-3">Global Grading Matrix</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 flex flex-col h-full">
+                    <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1 text-center">CEFR</p>
+                    <p class="text-3xl font-bold text-slate-900 text-center mb-3">B2</p>
+                    <p class="text-xs text-slate-700 italic leading-relaxed text-center mt-auto pt-3 border-t border-blue-200/50">You possess the vocabulary for complex topics, but structural L1 interference prevents a C1 rating.</p>
+                </div>
+                <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-200 flex flex-col h-full">
+                    <p class="text-xs font-bold text-emerald-600 uppercase tracking-widest mb-1 text-center">IELTS</p>
+                    <p class="text-3xl font-bold text-slate-900 text-center mb-3">6.5</p>
+                    <p class="text-xs text-slate-700 italic leading-relaxed text-center mt-auto pt-3 border-t border-emerald-200/50">Your pacing and coherence are functional for a professional environment, though crutch words reduce your fluency score.</p>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-200 flex flex-col h-full">
+                    <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1 text-center">TOEFL</p>
+                    <p class="text-3xl font-bold text-slate-900 text-center mb-3">88</p>
+                    <p class="text-xs text-slate-700 italic leading-relaxed text-center mt-auto pt-3 border-t border-indigo-200/50">Strong listening and speaking comprehension, but your syntactic complexity remains slightly below standard.</p>
+                </div>
+                <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 flex flex-col h-full">
+                    <p class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-1 text-center">GSE</p>
+                    <p class="text-3xl font-bold text-slate-900 text-center mb-3">59</p>
+                    <p class="text-xs text-slate-700 italic leading-relaxed text-center mt-auto pt-3 border-t border-amber-200/50">You are solidly in the upper-intermediate band, capable of most professional tasks but lacking polished rhetoric.</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mt-6 text-center italic">* Refer to the Master Appendix at the bottom of this report for grading scale definitions.</p>
+        </section>
+
+        <!-- MACRO DIAGNOSIS -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 border-l-4 border-l-slate-800">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 uppercase tracking-wider">Executive Macro Diagnosis</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-purple-50 rounded-xl p-6 border border-purple-200 shadow-sm">
+                    <div class="mb-4 pb-2 border-b border-purple-200/50">
+                        <h4 class="text-xs font-bold text-purple-700 uppercase tracking-widest">Category: Executive Positioning</h4>
+                        <p class="text-xs text-purple-600/80 mt-1 italic">How you subconsciously frame your value and authority during high-stakes communication.</p>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">The Apologetic Posture & Menu-Reading</h3>
+                    <p class="text-slate-800 leading-relaxed text-sm">Your overarching psychological bottleneck is The Apologetic Posture, manifesting as 'Chronological Storytelling' and 'Menu-Reading.' Rather than asserting your authority and claiming your impact, you present your skills ('basically it', 'also do', 'also have some experience') as if you are handing over a diner menu and hoping the listener finds something they like. By saying things like 'that's basically it,' you subconsciously shrink your own value before the listener even has a chance to evaluate it.</p>
+                </div>
+                
+                
+                <div class="bg-orange-50 rounded-xl p-6 border border-orange-200 shadow-sm">
+                    <div class="mb-4 pb-2 border-b border-orange-200/50">
+                        <h4 class="text-xs font-bold text-orange-700 uppercase tracking-widest">Category: L1 Native Interference</h4>
+                        <p class="text-xs text-orange-600/80 mt-1 italic">How the syntactic structure of your first language forces direct, unnatural translations in English.</p>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">The Tagalog Translation Loop</h3>
+                    <p class="text-slate-800 leading-relaxed text-sm">Phrases like 'I have quite challenged' and 'they don't push through' strongly suggest Tagalog (Philippine English) L1 interference. 'Push through' is a classic direct translation of the Tagalog word 'tuloy'. In global executive English, candidates don't 'push through'; they proceed or commit. You are directly translating your native conceptual framing into English words, which causes friction in a professional context.</p>
+                </div>
+                
+                
+                <div class="bg-teal-50 rounded-xl p-6 border border-teal-200 shadow-sm">
+                    <div class="mb-4 pb-2 border-b border-teal-200/50">
+                        <h4 class="text-xs font-bold text-teal-700 uppercase tracking-widest">Category: Cognitive Linguistics</h4>
+                        <p class="text-xs text-teal-600/80 mt-1 italic">The psychological barriers dictating your speech patterns and comfort with conversational silence.</p>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Silence as a Threat (Lexical Hierarchy)</h3>
+                    <p class="text-slate-800 leading-relaxed text-sm">Here is something you don't know about how your brain works: You aren't struggling with English vocabulary; you are struggling with Lexical Hierarchy and the Fear of the Void. You use words like 'So' and 'basically' as cognitive buffering mechanisms to keep the conversational channel open while your brain loads the translation. In your native cultural framework, silence feels confrontational. But in executive English, silence is the ultimate indicator of power. You are sacrificing authority to preserve comfort.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RADAR & ACTIONABLE ASCENSION -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col items-center justify-center relative">
+                <h3 class="text-lg font-bold text-slate-800 mb-2 uppercase tracking-widest">Fluency Radar</h3>
+                <p class="text-xs text-slate-500 italic text-center mb-6 leading-relaxed">This chart visualizes your balance across the 4 diagnostic pillars. A skewed shape indicates an over-reliance on one skill (e.g., strong vocabulary but poor pacing).</p>
+                <div class="w-full max-w-xs"><canvas id="radarChart"></canvas></div>
+            </div>
+            
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                <div class="bg-emerald-50 rounded-xl p-6 border border-emerald-100 h-full">
+                    <h3 class="text-lg font-bold text-emerald-900 uppercase tracking-widest mb-2">Actionable Ascension: The 'Verb-First, Drop-the-Anchor' Drill</h3>
+                    <p class="text-xs text-emerald-700/80 italic mb-6 leading-relaxed">Knowledge without application is useless. Based on your Macro Diagnosis, this is the exact physical drill you must practice before your next session to break your current bottleneck.</p>
+                    <ul class="space-y-4">
+                        
+                        <li class="flex items-start text-sm text-emerald-800 bg-white p-4 rounded-lg shadow-sm">
+                            <span class="mr-3 text-emerald-500 text-lg">▪</span> <span class="leading-relaxed">Physical Grounding: Before you answer a question about your skills, physically press your toes hard into the floor.</span>
+                        </li>
+                        
+                        <li class="flex items-start text-sm text-emerald-800 bg-white p-4 rounded-lg shadow-sm">
+                            <span class="mr-3 text-emerald-500 text-lg">▪</span> <span class="leading-relaxed">The Hard Start: You are banned from starting any sentence with 'So,' 'Um,' or 'Well.' You must start exclusively with an Active Verb or a direct 'I'.</span>
+                        </li>
+                        
+                        <li class="flex items-start text-sm text-emerald-800 bg-white p-4 rounded-lg shadow-sm">
+                            <span class="mr-3 text-emerald-500 text-lg">▪</span> <span class="leading-relaxed">The Two-Second Void: Make one point. Then, close your mouth, keep your eyes locked, and count to two in your head. Do not bridge the gap.</span>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE 4 PILLARS -->
+        <h2 class="text-3xl font-bold text-slate-900 text-center mt-12 mb-8 uppercase tracking-widest">The 4 Diagnostic Pillars</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <h3 class="text-xl font-bold text-slate-900">1. The Acoustic Analysis (Physics of Speech)</h3>
+                    <div class="mt-2 text-xs text-slate-500 uppercase tracking-wider">
+                        <span class="font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Placement: Intermediate</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col gap-4 flex-grow">
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-100 text-sm font-bold mono text-slate-700 text-center">
+                        WPM: 115.5 | Hesitation Density: 1.09% | Dead Air: 0s
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Your acoustic telemetry reveals a fascinating contradiction. On one hand, your hesitation density (the amount of 'ums' and 'ahs') is incredibly low at 1.09%. This is fantastic and places you near native levels for fluency maintenance. However, your overall pace is only 115.5 Words Per Minute (WPM). A native executive speaks at roughly 130-150 WPM. Because you have no dead air but a slow pace, it means you are elongating your words and physically slowing down your speech to buy your brain time to translate. This creates a labored, slightly sluggish acoustic rhythm.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                            <h4 class="text-xs font-bold text-emerald-800 uppercase mb-2">Strengths</h4>
+                            <ul class="list-disc list-inside text-xs text-emerald-700 space-y-1">
+                                <li>Exceptional avoidance of mid-word stuttering.</li><li>Smooth continuous vocalization with zero dead-air gaps.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <h4 class="text-xs font-bold text-red-800 uppercase mb-2">Weaknesses</h4>
+                            <ul class="list-disc list-inside text-xs text-red-700 space-y-1">
+                                <li>Labored pacing (115 WPM) reduces executive command.</li><li>Prosodic flattening (monotone delivery) when attempting to speed up.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
+                        <h4 class="text-xs font-bold text-blue-800 uppercase mb-2 flex items-center gap-2"><span class="text-base">💊</span> Personalized Prescription</h4>
+                        <div class="space-y-2">
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Advice:</span> You are physically slowing your speech to buy your brain time to translate. Stop this.</p>
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Task:</span> Practice 'shadowing' native podcasts at 1.2x speed for 5 minutes daily to train your articulatory muscles to move faster without panicking.</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="mt-auto pt-4">
+                        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden" open>
+                            <summary class="flex justify-between items-center font-bold p-4 text-slate-800 text-sm hover:bg-slate-100 transition-colors">
+                                <span class="uppercase tracking-widest text-xs flex items-center gap-2">
+                                    View Exhaustive Micro-Ledger
+                                </span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 bg-white space-y-4">
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Pace: 115.5 WPM</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">Speaking below 120 WPM in a business pitch subconsciously signals to the listener that you are unsure of your material.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ Aim for bursts of 140 WPM during critical points, followed by strategic 1-second pauses.</p>
+                                </div>
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">0 seconds of Dead Air</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">While this sounds good, it means you never pause for dramatic effect. You are terrified of silence.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ Allow a full 1.5 second pause after delivering a major metric or achievement.</p>
+                                </div>
+                                
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <h3 class="text-xl font-bold text-slate-900">2. The Lexical Analysis (Vocabulary & Phrasing)</h3>
+                    <div class="mt-2 text-xs text-slate-500 uppercase tracking-wider">
+                        <span class="font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Placement: B1 Intermediate</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col gap-4 flex-grow">
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-100 text-sm font-bold mono text-slate-700 text-center">
+                        Vocab Gaps: 4 | Crutch Words: 5 | Lexical Diversity: Average
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Your vocabulary is perfectly functional, but it lacks executive sharpness. You rely heavily on repetitive conversational fillers ('So', 'basically') to keep the conversational channel open while your brain loads the translation. Furthermore, when you discuss your job, you 'Menu-Read'. You list your skills ('I also do graphic design', 'I also have some experience') passively, rather than framing them as high-impact business solutions. This diminishes your perceived value.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                            <h4 class="text-xs font-bold text-emerald-800 uppercase mb-2">Strengths</h4>
+                            <ul class="list-disc list-inside text-xs text-emerald-700 space-y-1">
+                                <li>Strong foundational vocabulary for marketing tasks.</li><li>You successfully self-corrected your word choices twice without stalling.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <h4 class="text-xs font-bold text-red-800 uppercase mb-2">Weaknesses</h4>
+                            <ul class="list-disc list-inside text-xs text-red-700 space-y-1">
+                                <li>Heavy reliance on 'So' to initiate every new thought.</li><li>Using diminishing adverbs ('basically', 'just') that destroy authority.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
+                        <h4 class="text-xs font-bold text-blue-800 uppercase mb-2 flex items-center gap-2"><span class="text-base">💊</span> Personalized Prescription</h4>
+                        <div class="space-y-2">
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Advice:</span> Stop framing your skills as a menu ('I also do...'). Synthesize them ('I offer a hybrid skill set').</p>
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Task:</span> The 'Hard Start' Drill. For the next 3 days, you are banned from starting sentences with 'So', 'Um', or 'Well'. Start exclusively with an active verb or 'I'.</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="mt-auto pt-4">
+                        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden" open>
+                            <summary class="flex justify-between items-center font-bold p-4 text-slate-800 text-sm hover:bg-slate-100 transition-colors">
+                                <span class="uppercase tracking-widest text-xs flex items-center gap-2">
+                                    View Exhaustive Micro-Ledger
+                                </span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 bg-white space-y-4">
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Crutch Word: 'So, um' (Used 3 times)</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">Used as a cognitive buffer because you fear starting cold. It makes you sound reactive.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ Take a breath, and start directly with 'My expertise lies in...'</p>
+                                </div>
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Diminishing Word: 'that's basically it'</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">You are subconsciously shrinking your own value before the listener evaluates it.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ Conclude firmly: 'That covers the core scope of my work.'</p>
+                                </div>
+                                
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <h3 class="text-xl font-bold text-slate-900">3. The Grammar Analysis (Structure)</h3>
+                    <div class="mt-2 text-xs text-slate-500 uppercase tracking-wider">
+                        <span class="font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Placement: Developing</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col gap-4 flex-grow">
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-100 text-sm font-bold mono text-slate-700 text-center">
+                        False Starts: 4 | #1 Kryptonite: Subject-Verb Agreement / Direct Translations
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">Your grammar is solid when you are listing daily tasks. However, under the cognitive load of explaining the complex healthcare recruitment market, your syntactical structure collapses. We also found massive L1 (Native Language) interference. You are translating Tagalog/Spanish concepts directly into English. For example, using 'have' to express a state of being ('I have quite challenged') instead of 'to be' ('I am challenged'). This means you aren't thinking in English yet; you are running a real-time translation engine in your head.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                            <h4 class="text-xs font-bold text-emerald-800 uppercase mb-2">Strengths</h4>
+                            <ul class="list-disc list-inside text-xs text-emerald-700 space-y-1">
+                                <li>Excellent tense consistency when describing past work history.</li><li>Strong grasp of complex prepositions when relaxed.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <h4 class="text-xs font-bold text-red-800 uppercase mb-2">Weaknesses</h4>
+                            <ul class="list-disc list-inside text-xs text-red-700 space-y-1">
+                                <li>Severe L1 interference causing structural mistranslations.</li><li>Dropping articles ('the', 'a') when speaking quickly.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
+                        <h4 class="text-xs font-bold text-blue-800 uppercase mb-2 flex items-center gap-2"><span class="text-base">💊</span> Personalized Prescription</h4>
+                        <div class="space-y-2">
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Advice:</span> L1 interference spikes when you are stressed by complex topics. Do not force direct grammatical translations.</p>
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Task:</span> Practice 'Circumlocution'. If you feel a translation block coming on a complex word, pause, and describe the concept in 3 simple English words instead.</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="mt-auto pt-4">
+                        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden" open>
+                            <summary class="flex justify-between items-center font-bold p-4 text-slate-800 text-sm hover:bg-slate-100 transition-colors">
+                                <span class="uppercase tracking-widest text-xs flex items-center gap-2">
+                                    View Exhaustive Micro-Ledger
+                                </span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 bg-white space-y-4">
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Error: 'I have quite challenged in terms of conversion'</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">Direct translation error mapping a feeling to possession ('I have') rather than existence ('I am'). Sounds unprofessional.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ 'I face significant challenges with conversion' or 'I am challenged by conversion rates.'</p>
+                                </div>
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Error: 'they don't push through with our job offers'</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">A classic calque (direct translation) of the Tagalog word 'tuloy'. Global executives do not 'push through' job offers.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ 'They decline our job offers' or 'They do not proceed with the offer.'</p>
+                                </div>
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Error: 'different better compensation package'</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">Dropped article ('a') and missing plural ('packages'). Makes the sentence sound choppy.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ 'A different, better compensation package' or 'Better compensation packages.'</p>
+                                </div>
+                                
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 flex flex-col h-full hover:shadow-md transition-shadow">
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <h3 class="text-xl font-bold text-slate-900">4. The Coherence Analysis (Storytelling)</h3>
+                    <div class="mt-2 text-xs text-slate-500 uppercase tracking-wider">
+                        <span class="font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded">Placement: Rambler</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col gap-4 flex-grow">
+                    <div class="bg-slate-50 rounded-lg p-4 border border-slate-100 text-sm font-bold mono text-slate-700 text-center">
+                        Topic Drift: Moderate | Summarization Efficiency: Low
+                    </div>
+                    
+                    <p class="text-sm text-slate-700 leading-relaxed font-medium">You suffer from 'Chronological Storytelling'. When asked about your challenges, you spent 90 seconds giving me the background context of the healthcare recruitment market, the competition, and the compensation packages before finally arriving at the core problem. Executives do not communicate this way. Executives communicate backwards using the 'Bottom-Line Up Front' (BLUF) framework. You must state the answer immediately in 10 seconds, and only provide the context if asked.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                            <h4 class="text-xs font-bold text-emerald-800 uppercase mb-2">Strengths</h4>
+                            <ul class="list-disc list-inside text-xs text-emerald-700 space-y-1">
+                                <li>You provide highly detailed, accurate context.</li><li>You maintain a polite, engaged tone throughout long answers.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-lg border border-red-100">
+                            <h4 class="text-xs font-bold text-red-800 uppercase mb-2">Weaknesses</h4>
+                            <ul class="list-disc list-inside text-xs text-red-700 space-y-1">
+                                <li>Burying the lead. The listener has to wait 2 minutes to get the answer.</li><li>Oscillating between macro strategy and unrelated personal schedule details.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mt-4">
+                        <h4 class="text-xs font-bold text-blue-800 uppercase mb-2 flex items-center gap-2"><span class="text-base">💊</span> Personalized Prescription</h4>
+                        <div class="space-y-2">
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Advice:</span> You are burying the lead by telling chronological stories. Executives want the answer immediately, with context later.</p>
+                            <p class="text-xs text-blue-900 font-medium"><span class="font-bold uppercase tracking-wider text-blue-700">Task:</span> The BLUF Drill. When asked a question, give a 1-sentence bottom-line answer. Then pause for 2 seconds. Only explain 'why' if prompted or after the pause.</p>
+                        </div>
+                    </div>
+                    
+
+                    <div class="mt-auto pt-4">
+                        <details class="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden" open>
+                            <summary class="flex justify-between items-center font-bold p-4 text-slate-800 text-sm hover:bg-slate-100 transition-colors">
+                                <span class="uppercase tracking-widest text-xs flex items-center gap-2">
+                                    View Exhaustive Micro-Ledger
+                                </span>
+                            </summary>
+                            <div class="p-4 border-t border-slate-200 bg-white space-y-4">
+                                
+                                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                    <p class="text-xs font-bold text-red-600 mb-1 mono">Rambling Quote: 'My work schedule is usually eight to eight AM to five PM...'</p>
+                                    <p class="text-xs text-slate-600 italic mb-2">You took 4 sentences and 35 words to negotiate availability. It makes you sound eager but unpolished.</p>
+                                    <p class="text-xs text-slate-800 font-bold bg-slate-200 p-2 rounded">➔ Executive BLUF: 'I have complete schedule flexibility and can easily commit 4 hours a day to this project.'</p>
+                                </div>
+                                
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- HARDCODED MASTER APPENDIX -->
+        <footer class="mt-16 bg-slate-900 text-white rounded-2xl p-8 shadow-lg">
+            <h2 class="text-2xl font-bold mb-8 uppercase tracking-widest text-slate-300 border-b border-slate-700 pb-4">Master Appendix & Diagnostic Framework</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">1. Global Grading Matrix Explained</h3>
+                    <div class="space-y-4 text-sm text-slate-400">
+                        <div>
+                            <strong class="text-slate-200">CEFR (Common European Framework of Reference):</strong> 
+                            <p>The global standard for describing language ability on a 6-point scale, from A1 (Beginner) to C2 (Mastery). Corporate environments typically require a minimum of B2 (Upper-Intermediate) for fluency.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">IELTS (International English Language Testing System):</strong> 
+                            <p>Scored on a 9-band scale. Widely used for global migration and higher education. A score of 7.0+ indicates a "Good User" capable of handling complex reasoning.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">TOEFL (Test of English as a Foreign Language):</strong> 
+                            <p>Scored from 0 to 120. Primarily utilized by North American institutions. A score of 95+ is generally expected for professional and academic excellence.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">GSE (Global Scale of English):</strong> 
+                            <p>A highly granular scale from 10 to 90. It provides a more precise measurement of progress within a single CEFR band.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-4">2. The 4 Diagnostic Pillars Explained</h3>
+                    <div class="space-y-4 text-sm text-slate-400">
+                        <div>
+                            <strong class="text-slate-200">Acoustic Analysis:</strong> 
+                            <p>Measures the raw physics of speech. We track Words Per Minute (WPM), Hesitation Density (the ratio of filler words to total words), and Dead Air. A low WPM or high hesitation density signals cognitive stalling and reduces perceived authority.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">Lexical Analysis:</strong> 
+                            <p>Evaluates vocabulary expansion and precision. We track Crutch Words, Vocabulary Gaps, and the use of diminishing adverbs (e.g., "basically", "just") that subconsciously erode executive presence.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">Grammatical Analysis:</strong> 
+                            <p>Monitors structural accuracy. We hunt for False Starts and Tense Confusion, specifically identifying where the syntactic structure of your native language interferes with English delivery.</p>
+                        </div>
+                        <div>
+                            <strong class="text-slate-200">Coherence Analysis:</strong> 
+                            <p>Analyzes narrative flow and logical construction. We penalize "Chronological Storytelling" and focus on the BLUF (Bottom-Line Up Front) framework for concise, impactful communication.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-slate-700 flex justify-center text-xs text-slate-500 font-medium tracking-widest uppercase">
+                <span>Total Words Analyzed: 737</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById("radarChart").getContext("2d");
+            new Chart(ctx, {
+                type: "radar",
+                data: {
+                    labels: ["Acoustic", "Lexical", "Grammar", "Coherence"],
+                    datasets: [{
+                        data: [
+                            5.5, 
+                            6.0, 4.5, 5.0
+                        ],
+                        backgroundColor: "rgba(30, 41, 59, 0.2)",
+                        borderColor: "rgba(30, 41, 59, 1)",
+                        pointBackgroundColor: "rgba(30, 41, 59, 1)",
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: { ticks: { display: false, min: 0, max: 10 } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
